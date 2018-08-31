@@ -1,10 +1,17 @@
 #!/usr/bin/python
 
 import argparse
+import itertools
 
 def find_max_profit(prices):
-  pass 
-
+  # prices = iter(prices)
+  # profit = 0
+  # least = next(prices)
+  # for price in prices:
+  #   least = min(least, price)
+  #   profit = max(profit, price - least)
+  profit = max(sell - buy for buy, sell in itertools.combinations(prices, 2))
+  return profit
 
 if __name__ == '__main__':
   # You can test your implementation by running 
