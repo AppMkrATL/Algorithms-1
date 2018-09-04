@@ -3,8 +3,18 @@
 import math
 
 def recipe_batches(recipe, ingredients):
-  pass
-
+  result = 100
+  for rkey,rval in recipe.items():
+    for ikey,ival in ingredients.items():
+      if rval/ival <= 1:
+        # We have enough
+        if math.ceil(ival/rval) < result:
+          result = math.ceil(ival/rval)
+        pass
+      elif rval/ival > 1:
+        # We dont have enough
+        result = 0
+  return result
 
 if __name__ == '__main__':
   # Change the entries of these dictionaries to test 
