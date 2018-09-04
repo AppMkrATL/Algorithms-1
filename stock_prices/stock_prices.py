@@ -1,17 +1,30 @@
 #!/usr/bin/python
 
-import argparse
-import itertools
-
 def find_max_profit(prices):
-  # prices = iter(prices)
-  # profit = 0
-  # least = next(prices)
-  # for price in prices:
-  #   least = min(least, price)
-  #   profit = max(profit, price - least)
-  profit = max(sell - buy for buy, sell in itertools.combinations(prices, 2))
-  return profit
+  buying = True
+  buyprice = 0
+  highest = 0
+  lowest = 0
+  for i in range(len(prices)-1):
+    if buying:
+      if prices[i] < prices[i+1]:
+        buyprice = prices[i]
+        buying = False
+      else:
+        pass
+    elif not buying:
+      if prices[i] > prices[i+1]:
+        if prices[i] - buyprice > highest:
+          highest = prices[i]-buyprice
+          buyprice = 0
+          buying = True
+        else:
+          pass
+      else:
+        pass
+  return -10 if highest == 0 else highest
+  # profit = max(sell - buy for buy, sell in itertools.combinations(prices, 2))
+  # return profit
 
 if __name__ == '__main__':
   # You can test your implementation by running 
